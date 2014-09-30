@@ -63,7 +63,7 @@ class osticket {
     port => 80,
     docroot => '/var/www/html/osticket',
     logroot => '/var/log/osticket',
-	require => Vcsrepo['/var/www/html/osticket'],
+    require => Vcsrepo['/var/www/html/osticket'],
   }
   
   class{'mysql::server':
@@ -71,7 +71,7 @@ class osticket {
   }
 
   mysql::db { 'osticket':
-    user => 'root',
+    user => 'ubuntu',
     password => 'ubuntu',
     host => 'localhost',
     grant => ['CREATE','INSERT','SELECT','DELETE','UPDATE'],
@@ -94,9 +94,9 @@ class osticket {
   
   file {'/var/www/html/osticket/include/ost-config':
     ensure  => file,
-	source  => '/var/www/html/osticket/include/ost-config.sample.php',
-	mode    => '0644',
-	require => Vcsrepo['/var/www/html/osticket'],
+    source  => '/var/www/html/osticket/include/ost-config.sample.php',
+    mode    => '0644',
+    require => Vcsrepo['/var/www/html/osticket'],
   }
   
   
